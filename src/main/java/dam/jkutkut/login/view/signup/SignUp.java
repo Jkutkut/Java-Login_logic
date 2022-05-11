@@ -3,8 +3,11 @@ package dam.jkutkut.login.view.signup;
 import dam.jkutkut.login.controller.Controller;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
-public class SignUp extends JFrame {
+public class SignUp extends JFrame implements WindowListener {
     private static final String TITLE = "Sign Up";
 
     private JPanel jpForm;
@@ -19,25 +22,35 @@ public class SignUp extends JFrame {
     private JPanel jpButtons;
     private JPanel jpBody;
 
+    private Controller controller;
+
     public SignUp() {
         setTitle(TITLE);
         setContentPane(jpBody);
         pack();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setLocationRelativeTo(null);
         setSize(500, 200);
+        addWindowListener(this);
 
         initComponents();
     }
 
     private void initComponents() {
-
     }
 
     // SETTERS
     public void setController(Controller controller) {
         btnConfirm.addActionListener(controller);
         btnCancel.addActionListener(controller);
+
+        this.controller = controller;
+    }
+
+    public void resetForm() {
+        txtfUser.setText("");
+        txtfPasswd1.setText("");
+        txtfPassswd2.setText("");
     }
 
     // GETTERS
@@ -56,5 +69,40 @@ public class SignUp extends JFrame {
 
     public String[] getPasswd() {
         return new String[]{txtfPasswd1.getText(), txtfPassswd2.getText()};
+    }
+
+    // Window listener methods
+    @Override
+    public void windowOpened(WindowEvent e) {
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        controller.actionPerformed(new ActionEvent(btnCancel, 0, ""));
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+        resetForm();
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+        resetForm();
     }
 }
