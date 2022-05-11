@@ -26,6 +26,7 @@ public class Login extends JFrame implements WindowListener {
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        setSize(400, 200);
 
         initComponents();
     }
@@ -60,6 +61,14 @@ public class Login extends JFrame implements WindowListener {
 
     public JButton getBtnSignUp() {
         return btnSignUp;
+    }
+
+    public JTextField getTxtfUser() {
+        return txtfUser;
+    }
+
+    public JTextField getTxtfPasswd() {
+        return txtfPasswd;
     }
 
     // Window listener methods
