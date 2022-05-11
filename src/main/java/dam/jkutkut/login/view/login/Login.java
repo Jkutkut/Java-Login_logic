@@ -18,6 +18,7 @@ public class Login extends JFrame implements WindowListener {
     private JButton btnSignUp;
     private JLabel lblUser;
     private JLabel lblPasswd;
+    private JLabel lblError;
 
     public Login() {
         setTitle(TITLE);
@@ -33,8 +34,22 @@ public class Login extends JFrame implements WindowListener {
 
     }
 
+    // SETTERS
+
     public void setController(Controller controller) {
-//        .addActionListener(controller);
+        btnLogin.addActionListener(controller);
+        btnSignUp.addActionListener(controller);
+    }
+
+    public void clearError() {
+        this.setError("");
+    }
+
+    public void setError(String error) {
+        if (error.isEmpty() || error == null)
+            lblError.setText("");
+        else
+            lblError.setText("Error: " + error);
     }
 
     // GETTERS
