@@ -24,9 +24,10 @@ public class Login extends JFrame implements WindowListener {
         setTitle(TITLE);
         setContentPane(jpBody);
         pack();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setLocationRelativeTo(null);
         setSize(500, 200);
+        addWindowListener(this);
 
         initComponents();
     }
@@ -84,7 +85,15 @@ public class Login extends JFrame implements WindowListener {
 
     @Override
     public void windowClosing(WindowEvent e) {
-
+        int i = JOptionPane.showConfirmDialog(
+                this,
+                "¿Estás seguro de que quieres salir?",
+                "Salir",
+                JOptionPane.YES_NO_OPTION
+        );
+        if (i == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
     }
 
     @Override
