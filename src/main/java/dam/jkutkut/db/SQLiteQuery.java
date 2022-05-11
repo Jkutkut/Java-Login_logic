@@ -1,15 +1,20 @@
 package dam.jkutkut.db;
 
-public class SQLiteQuery {
-    private static final String[] TYPES = {
-        "INT", "TEXT"
-    };
+import java.util.ArrayList;
 
-    public static String[] typesFormat(String... types) {
-        return types;
+public class SQLiteQuery {
+    private AccessDB db;
+    private String query;
+    private int outputLength;
+
+    public SQLiteQuery(AccessDB db, String query, Object... outputLength) {
+        this.db = db;
+        this.query = query;
+        this.outputLength = outputLength.length;
     }
 
-    public int executeQuery(AccessDB db, String query, String[] format, Object[] argv) {
-        return -1;
+    public ArrayList<Object[]> getFromDB(String query, Object... input) {
+
+        return null;
     }
 }
