@@ -76,8 +76,8 @@ public class Controller implements ActionListener {
         String password = vLogin.getPasswd();
 
         try {
-
-
+            loginDB.login(username, password);
+            JOptionPane.showMessageDialog(null, "Login successful");
             vLogin.clearError();
         }
         catch (InvalidDataException e) {
