@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import dam.jkutkut.exception.InvalidDataException;
 import dam.jkutkut.login.view.login.Login;
 import dam.jkutkut.login.view.signup.SignUp;
-import dam.jkutkut.passwordPolicy.model.PasswordPolicy;
+import dam.jkutkut.passwordPolicy.model.BasicPasswordPolicy;
 import dam.jkutkut.passwordPolicy.model.UserPolicy;
 
 public class Controller implements ActionListener {
@@ -15,14 +15,14 @@ public class Controller implements ActionListener {
     private SignUp vSignUp;
 
     private UserPolicy userPolicy;
-    private PasswordPolicy passwordPolicy;
+    private BasicPasswordPolicy passwordPolicy;
 
     public Controller(Login vLogin, SignUp vSignUp) {
         this.vLogin = vLogin;
         this.vSignUp = vSignUp;
 
         userPolicy = new UserPolicy();
-        passwordPolicy = new PasswordPolicy();
+        passwordPolicy = new BasicPasswordPolicy();
     }
 
     @Override
@@ -32,24 +32,33 @@ public class Controller implements ActionListener {
             if (button == vLogin.getBtnLogin())
                 login();
             else if (button == vLogin.getBtnSignUp())
-                signup();
+                openSignup();
         }
     }
 
-    private void login() {
-        String username = vLogin.getTxtfUser().getText();
-        String password = vLogin.getTxtfPasswd().getText();
+    private void openSignup() {
+        vLogin.setVisible(false);
+        vSignUp.setVisible(true);
+    }
+
+    private void signup() {
+        String username = vSignUp.getUser();
+        String[] password = vSignUp.getPasswd();
 
         try {
             userPolicy.validate(username);
-            passwordPolicy.validate(password);
+            if (!password[0].equals(password[1]))
+                throw new InvalidDataException("Passwords do not match");
+            passwordPolicy.validate(password[0]);
+
+            JOptionPane.showMessageDialog(null, "Login successful");
         }
         catch (InvalidDataException e) {
             vLogin.setError(e.getMessage());
         }
     }
 
-    private void signup() {
+    private void login() {
 
     }
 }
