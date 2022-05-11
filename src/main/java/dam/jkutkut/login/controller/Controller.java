@@ -20,12 +20,18 @@ public class Controller implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() instanceof JButton) {
             JButton button = (JButton) e.getSource();
-            if (button == vLogin.getBtnLogin()) {
-                System.out.println("login");
-            }
-            else if (button == vLogin.getBtnSignUp()) {
-                System.out.println("signup");
-            }
+            if (button == vLogin.getBtnLogin())
+                login();
+            else if (button == vLogin.getBtnSignUp())
+                signup();
         }
+    }
+
+    private void login() {
+
+    }
+
+    private void signup() {
+
     }
 }

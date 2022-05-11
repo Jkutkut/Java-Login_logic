@@ -9,7 +9,7 @@ public class SQLiteQuery {
         return types;
     }
 
-    public int executeQuery(AccessDB db, String query, String[] format, Object... argv) {
-
+    public int executeQuery(AccessDB db, String query, String[] format, Object[] argv) {
+        return -1;
     }
 }
