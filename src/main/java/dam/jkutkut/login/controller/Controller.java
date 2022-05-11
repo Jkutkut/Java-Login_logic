@@ -37,7 +37,6 @@ public class Controller implements ActionListener {
                 signup();
             else if (button == vSignUp.getBtnCancel())
                 closeSignup();
-
         }
     }
 
@@ -61,10 +60,11 @@ public class Controller implements ActionListener {
                 throw new InvalidDataException("Passwords do not match");
             passwordPolicy.validate(password[0]);
 
+            vSignUp.clearError();
             JOptionPane.showMessageDialog(null, "Login successful");
         }
         catch (InvalidDataException e) {
-            vLogin.setError(e.getMessage());
+            vSignUp.setError(e.getMessage());
         }
     }
 

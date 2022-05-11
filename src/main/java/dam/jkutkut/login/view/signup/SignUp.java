@@ -21,6 +21,7 @@ public class SignUp extends JFrame implements WindowListener {
     private JLabel lblPassswd2;
     private JPanel jpButtons;
     private JPanel jpBody;
+    private JLabel lblError;
 
     private Controller controller;
 
@@ -30,7 +31,7 @@ public class SignUp extends JFrame implements WindowListener {
         pack();
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setLocationRelativeTo(null);
-        setSize(500, 200);
+        setSize(500, 250);
         addWindowListener(this);
 
         initComponents();
@@ -45,6 +46,17 @@ public class SignUp extends JFrame implements WindowListener {
         btnCancel.addActionListener(controller);
 
         this.controller = controller;
+    }
+
+    public void clearError() {
+        this.setError("");
+    }
+
+    public void setError(String error) {
+        if (error.isEmpty() || error == null)
+            lblError.setText("");
+        else
+            lblError.setText("Error: " + error);
     }
 
     public void resetForm() {
