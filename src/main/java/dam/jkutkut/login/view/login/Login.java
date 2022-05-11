@@ -5,9 +5,11 @@ import javax.swing.*;
 public class Login {
     private JPanel jpBody;
     private JPanel jpForm;
-    private JTextField textField1;
-    private JTextField textField2;
+    private JTextField txtfUser;
+    private JTextField txtfPasswd;
     private JPanel jpButtons;
-    private JButton button1;
-    private JButton button2;
+    private JButton btnLogin;
+    private JButton btnSignUp;
+    private JLabel lblUser;
+    private JLabel lblPasswd;
 }
