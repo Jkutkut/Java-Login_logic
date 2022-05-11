@@ -1,4 +1,4 @@
-package dam.jkutkut.controller;
+package dam.jkutkut.login.controller;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

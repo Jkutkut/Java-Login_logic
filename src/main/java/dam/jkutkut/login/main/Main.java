@@ -1,7 +1,7 @@
 package dam.jkutkut.main;
 
 import dam.jkutkut.view.View;
-import dam.jkutkut.controller.Controller;
+import dam.jkutkut.login.controller.Controller;
 
 import java.awt.*;
 

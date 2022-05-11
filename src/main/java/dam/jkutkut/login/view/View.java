@@ -1,6 +1,6 @@
 package dam.jkutkut.view;
 
-import dam.jkutkut.controller.Controller;
+import dam.jkutkut.login.controller.Controller;
 
 import javax.swing.*;
 import java.awt.event.WindowEvent;
