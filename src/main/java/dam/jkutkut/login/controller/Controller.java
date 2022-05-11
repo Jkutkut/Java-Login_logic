@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import dam.jkutkut.db.LoginDB;
 import dam.jkutkut.exception.InvalidDataException;
 import dam.jkutkut.login.view.login.Login;
 import dam.jkutkut.login.view.signup.SignUp;
@@ -13,13 +14,15 @@ import dam.jkutkut.passwordPolicy.model.UserPolicy;
 public class Controller implements ActionListener {
     private Login vLogin;
     private SignUp vSignUp;
+    private LoginDB loginDB;
 
     private UserPolicy userPolicy;
     private BasicPasswordPolicy passwordPolicy;
 
-    public Controller(Login vLogin, SignUp vSignUp) {
+    public Controller(Login vLogin, SignUp vSignUp, LoginDB loginDB) {
         this.vLogin = vLogin;
         this.vSignUp = vSignUp;
+        this.loginDB = loginDB;
 
         userPolicy = new UserPolicy();
         passwordPolicy = new BasicPasswordPolicy();
@@ -69,6 +72,16 @@ public class Controller implements ActionListener {
     }
 
     private void login() {
+        String username = vLogin.getUser();
+        String password = vLogin.getPasswd();
 
+        try {
+
+
+            vLogin.clearError();
+        }
+        catch (InvalidDataException e) {
+            vLogin.setError(e.getMessage());
+        }
     }
 }
