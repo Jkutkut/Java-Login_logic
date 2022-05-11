@@ -54,7 +54,13 @@ public class Login extends JFrame implements WindowListener {
 
     // GETTERS
 
+    public JButton getBtnLogin() {
+        return btnLogin;
+    }
 
+    public JButton getBtnSignUp() {
+        return btnSignUp;
+    }
 
     // Window listener methods
     @Override

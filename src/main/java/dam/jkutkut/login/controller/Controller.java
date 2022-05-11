@@ -18,6 +18,14 @@ public class Controller implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-//        if (e.getSource() instanceof JButton) {
+        if (e.getSource() instanceof JButton) {
+            JButton button = (JButton) e.getSource();
+            if (button == vLogin.getBtnLogin()) {
+                System.out.println("login");
+            }
+            else if (button == vLogin.getBtnSignUp()) {
+                System.out.println("signup");
+            }
+        }
     }
 }
