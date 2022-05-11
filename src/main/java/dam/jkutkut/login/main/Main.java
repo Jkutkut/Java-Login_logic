@@ -16,6 +16,7 @@ public class Main {
 
                 Controller controller = new Controller(vLogin, vSignUp);
                 vLogin.setController(controller);
+                vSignUp.setController(controller);
                 vLogin.setVisible(true);
             }
         });

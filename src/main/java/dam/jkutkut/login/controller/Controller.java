@@ -33,6 +33,11 @@ public class Controller implements ActionListener {
                 login();
             else if (button == vLogin.getBtnSignUp())
                 openSignup();
+            else if (button == vSignUp.getBtnConfirm())
+                signup();
+            else if (button == vSignUp.getBtnCancel())
+                closeSignup();
+
         }
     }
 
@@ -41,21 +46,26 @@ public class Controller implements ActionListener {
         vSignUp.setVisible(true);
     }
 
+    private void closeSignup() {
+        vLogin.setVisible(true);
+        vSignUp.setVisible(false);
+    }
+
     private void signup() {
-//        String username = vSignUp.getUser();
-//        String[] password = vSignUp.getPasswd();
-//
-//        try {
-//            userPolicy.validate(username);
-//            if (!password[0].equals(password[1]))
-//                throw new InvalidDataException("Passwords do not match");
-//            passwordPolicy.validate(password[0]);
-//
-//            JOptionPane.showMessageDialog(null, "Login successful");
-//        }
-//        catch (InvalidDataException e) {
-//            vLogin.setError(e.getMessage());
-//        }
+        String username = vSignUp.getUser();
+        String[] password = vSignUp.getPasswd();
+
+        try {
+            userPolicy.validate(username);
+            if (!password[0].equals(password[1]))
+                throw new InvalidDataException("Passwords do not match");
+            passwordPolicy.validate(password[0]);
+
+            JOptionPane.showMessageDialog(null, "Login successful");
+        }
+        catch (InvalidDataException e) {
+            vLogin.setError(e.getMessage());
+        }
     }
 
     private void login() {

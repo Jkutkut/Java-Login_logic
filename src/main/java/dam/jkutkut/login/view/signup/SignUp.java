@@ -42,4 +42,19 @@ public class SignUp extends JFrame {
 
     // GETTERS
 
+    public JButton getBtnConfirm() {
+        return btnConfirm;
+    }
+
+    public JButton getBtnCancel() {
+        return btnCancel;
+    }
+
+    public String getUser() {
+        return txtfUser.getText();
+    }
+
+    public String[] getPasswd() {
+        return new String[]{txtfPasswd1.getText(), txtfPassswd2.getText()};
+    }
 }
