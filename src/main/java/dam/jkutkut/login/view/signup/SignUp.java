@@ -4,9 +4,13 @@ import javax.swing.*;
 
 public class SignUp {
     private JPanel jpForm;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JTextField textField3;
-    private JButton button1;
-    private JButton button2;
+    private JTextField txtfUser;
+    private JTextField txtfPasswd1;
+    private JTextField txtfPassswd2;
+    private JButton btnConfirm;
+    private JButton btnCancel;
+    private JLabel lblUser;
+    private JLabel lblPasswd1;
+    private JLabel lblPassswd2;
+    private JPanel jpButtons;
 }
