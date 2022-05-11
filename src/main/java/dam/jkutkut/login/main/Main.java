@@ -1,6 +1,7 @@
-package dam.jkutkut.main;
+package dam.jkutkut.login.main;
 
-import dam.jkutkut.view.View;
+import dam.jkutkut.login.view.login.Login;
+import dam.jkutkut.login.view.signup.SignUp;
 import dam.jkutkut.login.controller.Controller;
 
 import java.awt.*;
@@ -10,11 +11,12 @@ public class Main {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                View ventana = new View();
+                Login vLogin = new Login();
+                SignUp vSignUp = new SignUp();
 
-                Controller controlador = new Controller(ventana);
-                ventana.setControlador(controlador);
-                ventana.setVisible(true);
+                Controller controller = new Controller(vLogin, vSignUp);
+                vLogin.setController(controller);
+                vLogin.setVisible(true);
             }
         });
     }

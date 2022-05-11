@@ -4,13 +4,16 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import dam.jkutkut.view.View;
+import dam.jkutkut.login.view.login.Login;
+import dam.jkutkut.login.view.signup.SignUp;
 
 public class Controller implements ActionListener {
-    private View window;
+    private Login vLogin;
+    private SignUp vSignUp;
 
-    public Controller(View window) {
-        this.window = window;
+    public Controller(Login vLogin, SignUp vSignUp) {
+        this.vLogin = vLogin;
+        this.vSignUp = vSignUp;
     }
 
     @Override
