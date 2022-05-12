@@ -44,6 +44,7 @@ public class Controller implements ActionListener {
     }
 
     private void openSignup() {
+        vLogin.resetForm();
         vLogin.setVisible(false);
         vSignUp.setVisible(true);
     }
@@ -66,7 +67,8 @@ public class Controller implements ActionListener {
             loginDB.signup(username, password[0]);
 
             vSignUp.clearError();
-            JOptionPane.showMessageDialog(null, "Signup successful");
+            JOptionPane.showMessageDialog(vSignUp, "Signup successful");
+            closeSignup();
         }
         catch (InvalidDataException e) {
             vSignUp.setError(e.getMessage());
@@ -79,7 +81,7 @@ public class Controller implements ActionListener {
 
         try {
             loginDB.login(username, password);
-            JOptionPane.showMessageDialog(null, "Login successful");
+            JOptionPane.showMessageDialog(vLogin, "Login successful");
             vLogin.clearError();
         }
         catch (InvalidDataException e) {
