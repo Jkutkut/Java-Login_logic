@@ -63,8 +63,10 @@ public class Controller implements ActionListener {
                 throw new InvalidDataException("Passwords do not match");
             passwordPolicy.validate(password[0]);
 
+            loginDB.signup(username, password[0]);
+
             vSignUp.clearError();
-            JOptionPane.showMessageDialog(null, "Login successful");
+            JOptionPane.showMessageDialog(null, "Signup successful");
         }
         catch (InvalidDataException e) {
             vSignUp.setError(e.getMessage());

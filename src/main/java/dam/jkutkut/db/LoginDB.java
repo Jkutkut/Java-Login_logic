@@ -25,10 +25,10 @@ public class LoginDB extends AccessDB {
     public void login(String username, String password) throws InvalidDataException, SQLiteQueryException {
         // SELECT USER, PASSWORD FROM USERS WHERE USER = ?;
         String query = String.format(
-                "SELECT %s FROM %s WHERE %s = ?;",
-                COLUMN_PASSWORD,
-                TABLE_NAME,
-                COLUMN_ID
+            "SELECT %s FROM %s WHERE %s = ?;",
+            COLUMN_PASSWORD,
+            TABLE_NAME,
+            COLUMN_ID
         );
 
         String errorReason = INVALID_USERNAME_OR_PASSWORD;
@@ -49,12 +49,22 @@ public class LoginDB extends AccessDB {
             throw new InvalidDataException(errorReason);
     }
 
-    public void addUser(String username, String password) {
-        // INSERT INTO TABLA VALUES USER, PASSWORD;
+    public void signup(String username, String password) {
+        // INSERT INTO TABLA VALUES (?, ?);
         String query = String.format(
-                "INSERT"
+            "INSERT INTO %s VALUES (?, ?);",
+            TABLE_NAME,
+            username,
+            password
         );
 
+        int result = SQLiteQuery.execute(this, query, username, password);
 
+        System.out.printf(
+            "Added user %s into table %s. Result status: %d\n",
+            username,
+            TABLE_NAME,
+            result
+        );
     }
 }
