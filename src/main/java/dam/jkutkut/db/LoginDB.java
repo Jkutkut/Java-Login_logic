@@ -33,7 +33,7 @@ public class LoginDB extends AccessDB {
 
         String errorReason = INVALID_USERNAME_OR_PASSWORD;
 
-        ArrayList<Object[]> data = SQLiteQuery.getFromDB(
+        ArrayList<Object[]> data = SQLiteQuery.get(
             this,
             1,
             query,
@@ -47,5 +47,14 @@ public class LoginDB extends AccessDB {
 
         if (!passwd.equals(password))
             throw new InvalidDataException(errorReason);
+    }
+
+    public void addUser(String username, String password) {
+        // INSERT INTO TABLA VALUES USER, PASSWORD;
+        String query = String.format(
+                "INSERT"
+        );
+
+
     }
 }
