@@ -1,11 +1,13 @@
 package dam.jkutkut.db;
 
 import dam.jkutkut.exception.InvalidDataException;
+import dam.jkutkut.exception.SQLiteQueryException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class LoginDB extends AccessDB {
     private static final String DB_LOCATION = "db/loginDB.sqlite3";
@@ -20,51 +22,30 @@ public class LoginDB extends AccessDB {
         super(DB_LOCATION);
     }
 
-    public void login(String user, String password) {
+    public void login(String username, String password) throws InvalidDataException, SQLiteQueryException {
         // SELECT USER, PASSWORD FROM USERS WHERE USER = ?;
         String query = String.format(
-            "SELECT %s FROM %s WHERE %s = ?;",
-            COLUMN_PASSWORD,
-            TABLE_NAME,
-            COLUMN_ID
+                "SELECT %s FROM %s WHERE %s = ?;",
+                COLUMN_PASSWORD,
+                TABLE_NAME,
+                COLUMN_ID
         );
 
         String errorReason = INVALID_USERNAME_OR_PASSWORD;
 
-        Connection con = null;
-        PreparedStatement pstmt = null;
-        ResultSet rslt = null;
+        ArrayList<Object[]> data = SQLiteQuery.getFromDB(
+            this,
+            1,
+            query,
+            username
+        );
 
-        try {
-            con = this.getConnection();
+        if (data.size() == 0)
+            throw new InvalidDataException(errorReason);
 
-            pstmt = con.prepareStatement(query);
-            pstmt.setString(1, user);
+        String passwd = (String) data.get(0)[0];
 
-            rslt = pstmt.executeQuery();
-
-            String passwd;
-
-            if (rslt.next()) {
-                passwd = rslt.getString(1);
-
-                if (passwd.equals(password))
-                    return ;
-            }
-        } catch (ClassNotFoundException e) {
-            errorReason = "El driver indicado no es correcto:\n" + e.getMessage();
-
-        } catch (SQLException e) {
-            errorReason = "Error en la base de datos:\n" + e.getMessage();
-        } finally {
-            try {
-                if (rslt != null) rslt.close();
-                if (pstmt != null) pstmt.close();
-                if (con != null) con.close();
-            } catch (SQLException e) {
-                errorReason = "Error al cerrar las conexiones:\n" + e.getMessage();
-            }
-        }
-        throw new InvalidDataException(errorReason);
+        if (!passwd.equals(password))
+            throw new InvalidDataException(errorReason);
     }
 }
